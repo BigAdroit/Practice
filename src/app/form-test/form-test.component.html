@@ -1,0 +1,125 @@
+<h1>Form Validation with Reactive method</h1>
+<form [formGroup]="regForm">
+    {{ regForm.value | json }}
+    <div>
+        <label for=""> Username : </label>
+        <input type="text" formControlName="userName" placeholder="username" name ="userName"
+            [class.is-invalid]="regForm.get('userName').invalid && regForm.get('userName').touched"
+        >
+        <div *ngIf="regForm.get('userName').invalid && regForm.get('userName').touched">
+            <small class="text-danger" *ngIf="regForm.get('userName').errors.required"> Username is required </small>
+            <small class="text-danger" *ngIf="regForm.get('userName').errors.minlength"> Username must at least more than 3 character</small>
+        </div>
+    </div>
+    <div>
+        <label for=""> Email: </label>
+        <input type="email" formControlName="email" placeholder="email" name="email"
+            [class.is-invalid]="regForm.get('email')?.invalid && regForm.get('email')?.touched"
+        >
+        <div *ngIf="regForm.get('email').invalid && regForm.get('email').touched">
+            <small class="text-danger" *ngIf="regForm.get('email').errors.required"> Email is required </small>
+            <small class="text-danger" *ngIf="regForm.get('email').errors.pattern">Invalid Email address</small>
+        </div>
+    </div>
+    <div>
+        <label for=""> Provisionals Offers : </label>
+         <input type="checkbox" formControlName="offer">
+    </div>
+    <div>
+        <label for=""> Provisional Email Address: </label>
+        <input type="email" placeholder="email" name="pMail" formControlName="pmail"
+            [class.is-invalid]="regForm.get('pmail').errors"
+        >
+        <div>
+            <small *ngIf="regForm.get('pmail').errors"> 
+                Provisional email is required
+            </small>
+        </div>
+    </div>
+    <div>
+        <button (click)="addAlternateEmail()"> Add Email Address </button>
+        <div *ngFor="let add of alternateEmail?.controls; let i = index">
+            <input type="text" [formControlName]="i">
+        </div>
+    </div>
+    <div>
+        <label for=""> Password : </label>
+        <input type="password" formControlName="password" placeholder="Password" name="password"
+        [class.is-invalid]="regForm.get('password').invalid && regForm.get('password')?.touched"
+        >
+        <div *ngIf="regForm.get('password')?.invalid && regForm.get('password')?.touched">
+            <small class="text-danger" *ngIf="regForm.get('password').errors.required"> Email is required </small>
+            <small class="text-danger" *ngIf="regForm.get('password').errors.pattern"> 
+                Password Must contain uppercase, lowercase and numbers and symbols
+            </small>
+        </div>
+    </div>
+    <div>
+        <label for=""> Confirm Password : </label>
+        <input type="password" formControlName="cpass" placeholder="Password" 
+            name="confirmPass"
+            [class.is-invalid]="regForm.errors?.misMatch"  
+        >
+        <small class="text-danger" *ngIf="regForm.errors?.misMatch">
+             password and confirm password must tally
+        </small>
+    </div>
+   
+    <!--  form Gruop method using the agnilar from gruoping method -->
+    <div formGroupName="address">
+        <div>
+            <label for=""> State : </label>
+            <input type="text" formControlName="state" placeholder="state" name="state">
+        </div>
+        <div>
+            <label for=""> Postal code : </label>
+            <input type="text" formControlName="postalcode" placeholder="Postalcode" name="postal code" >
+            <!-- <div *ngIf="regForm.get('postalcode').invalid && regForm.get('postalcode').touched">
+                <small class="text-danger" *ngIf="regForm.get('postalcode').errors?.required"> Email is required </small>
+                <small class="text-danger" *ngIf="regForm.get('postalcode').errors?.pattern"> 
+                    Password Must contain uppercase, lowercase and numbers and symbols
+                </small>
+            </div> -->
+        </div>
+        <div>
+            <label for=""> Street : </label>
+            <input type="text" formControlName="street" placeholder="street" name="street">
+        </div>
+    </div>
+
+    <button> Submit</button>
+    <button (click)="loadData()"> Load API Data </button>
+</form>
+
+
+<h2> Creating a file with text and saving it with extension</h2>
+<form (ngSubmit)="onSave()" #fileCreate ="ngForm">
+    <div>
+        <label for=""> Filename: </label>
+        <input type="text" name="filename" [(ngModel)]="filename">
+    </div>
+    <div>
+        <label for="">Content: </label>
+        <input type="text" name="content" [(ngModel)]="content">
+    </div>
+    <div>
+        <label for="">Extension: </label>
+        <input type="text" name="extension" [(ngModel)]="extension">
+    </div>
+    
+    <button > Save file Here </button>
+</form>
+{{ filename }}
+
+<h1> Upload Data </h1>
+
+<div>
+    <label for=""> Uplaod a file </label>
+    <input #fileUpload [accept]="'.doc'" type="file" (change)="onFileSelect($event)">
+    <button (click)="fileUpload.click()"> Import file... </button>
+</div>
+
+<div>
+    <p> {{ uploadedFileName }}</p>
+    <h3> {{ uploadedFileContent }} </h3>
+</div>

@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'track';
+  title = 'Task Tracker';
+  public username = "Eleniyan"
+
+  toggleAddTask() {
+    console.log('How are you \n Am working!')
+  }
 }

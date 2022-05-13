@@ -1,0 +1,23 @@
+[
+
+    {
+        "id" : 1,
+        "name" : "Owoduni Jalaalat",
+        "stack" : "Angular"
+    },
+    {
+        "id" : 2,
+        "name" : "Akomolafe Helen",
+        "stack" : "Javascript"
+    },
+    {
+        "id" : 3,
+        "name" : "Osemegbe Victor",
+        "stack" : "HTML"
+    },
+    {
+        "id" : 4,
+        "name" : "Lawani Victor",
+        "stack" : "REACT"
+    }
+]

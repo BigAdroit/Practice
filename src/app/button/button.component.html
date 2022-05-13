@@ -1,0 +1,12 @@
+<!-- <button
+    [ngStyle]="{'background-color': bgcolor, 'color': color}" 
+    class="btn" 
+    (click) ="onClick()">{{text}}
+</button> -->
+
+<h2>{{ title}}</h2>
+<ul>
+    <li *ngFor="let judith of employee" (click)="navigate(judith)"> {{ judith.name }}  <span (click)="onDelete(judith)"> &times; </span></li>
+</ul>
+<!-- <img src="../../assets/employee.json" alt="" srcset=""> -->
+<button (click)="addEmployee()"> Add Task</button>

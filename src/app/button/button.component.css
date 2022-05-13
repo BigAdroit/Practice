@@ -1,0 +1,11 @@
+li {
+    font-size: 2rem;
+}
+span {
+    color: red;
+    font-family: forte;
+    font-size: 2rem;
+}
+li {
+    cursor: pointer;
+}

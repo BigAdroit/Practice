@@ -1,0 +1,21 @@
+<h4> {{ id }} </h4> 
+<form #testForm="ngForm">
+    {{testForm.value | json}}
+    <input type="text" placeholder="username" name="name" ngModel #name="ngModel" 
+        [class.is-invalid]="name.invalid && name.touched"
+        required
+    >
+    <small *ngIf="name.invalid && name.touched"> name is required</small>
+</form>
+
+<h2> Caurosel with Angular </h2>
+<h1 *ngFor="let name of names; let i = index"
+    [ngClass]="{'active': selectedIndex === i}"
+> 
+<span (click)="prev()"> - </span> {{name}} <span (click)="next()"> + </span>
+</h1>
+
+
+<span *ngFor="let name of names; let i = index" (click)="selectIndex(i)">
+    {{i}}
+</span>

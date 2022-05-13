@@ -1,0 +1,43 @@
+<p [style.color]="'green'">practice works!</p>
+<input type="text" #data> 
+<p>{{greetings}} </p>
+<button (click) ="onClick(data)"> Submit </button>
+<h2 class="text-success"> Welcome to Angular </h2>
+<h2 [class] ="dangerText">
+    Welcome to Angular Class
+</h2>
+<h2 [class.text-success]="hasError">
+    Welcome to Angular 
+</h2>
+<h2 [class.danger-text] ="hasError">
+    Welcome to Angular Class Today
+</h2>
+<input type="text" [(ngModel)]="name"> {{name}}
+<h3 *ngIf="true; else elseBlock"> Hello, How are you</h3>
+<ng-template #elseBlock>
+    <h3>Commot body joor!</h3>
+</ng-template>
+<!-- Checking for validation and Authentication -->
+<h4 *ngIf="false; then thenBlock; else elseBloc">
+<h3>{{appData}}</h3>
+</h4>
+<ng-template #thenBlock> AM here !</ng-template>
+<ng-template #elseBloc> Am not at home </ng-template>
+ <!--  using  switch statement in angular -->
+ <div [ngSwitch] = "color">
+     <div *ngSwitchCase ="'red'"> Red o ooooo!</div>
+     <div *ngSwitchCase ="'blue'">Blue o ooooo!</div>
+     <div *ngSwitchCase ="'green'"> Green o ooooo!</div>
+     <div *ngSwitchDefault>No color o ooooo!</div>
+ </div>
+ <div *ngFor="let e of Employee">
+     <h3> {{ e.name }} {{ e.Age}}</h3>
+ </div>
+<div>
+    {{ date | date : "short"}}
+    {{ date | date : "shortTime"}}
+    {{ date | date : "shortDate"}}
+</div>
+<div>
+    {{value | currency : "NGN" : "code"}}
+</div>

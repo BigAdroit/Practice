@@ -1,0 +1,50 @@
+<h1> Comment Submission session is on please type your comment </h1>
+<p *ngIf="isDisplay" class="text-success"> Succesfully Submited
+    <br> <small> You will be redirected shortly </small>
+</p>
+
+<form #userForm = "ngForm" (ngSubmit) ="onSubmit()" novalidate *ngIf="formShow">
+
+    {{ userForm.value | json}}
+    <p>
+    {{ userForm.form.valid}}
+
+    </p>
+    <p>
+        {{userModel | json}}
+    </p>
+
+    <div class="form-holder">
+        <label for="name" class="form-title"> First Name </label>
+        <input type="text" #name = "ngModel" required [class.is-invalid]="name.invalid && name.touched" name="firstName" class="form-control" [(ngModel)]=" userModel.firstName">
+        <small class="text-danger" [class.d-none]="name.valid || name.untouched"> Name is required</small>   
+    </div>
+    {{ name.dirty }}
+    <div class="form-holder">
+        <label for="name" class="form-title"> Last Name </label>
+        <input type="text" name="lastName" #lastname="ngModel" required  [class.is-invalid]="lastname.invalid && lastname.touched" class="form-control" [(ngModel)]="userModel.lastname">   
+        <small class="text-danger" [class.d-none]="lastname.valid || lastname.untouched"> Last name is required</small>
+    </div>
+
+    <div class="form-holder">
+        <label for="name" class="form-title"> Email </label>
+        <input type="email" #email="ngModel" required [class.is-invalid]="email.invalid && email.touched" name="email" class="form-control" [(ngModel)]="userModel.email">
+        <small class="text-danger" [class.d-none]="email.valid || email.untouched"> Email is required </small>   
+    </div>
+
+    <div class="form-holder">
+        <label for="" class="form-title"> Select topic </label>
+        <select name="topic" id="" ngModel #topic="ngModel" class="form-control" required [class.is-invalid]="topic.invalid && topic.touched" [(ngModel)]="userModel.topic">
+            <option value="">Select topic to discuss</option>
+            <option *ngFor="let topic of topics" value="{{topic}}"> {{topic}}</option>
+        </select>
+    </div>
+
+    <div class="form-holder">
+        <label for="message" class="form-title">Comment</label>
+        <textarea name="message" id="" cols="30" rows="10" #message="ngModel" required [class.is-invalid]="message.invalid && message.touched" [(ngModel)]="userModel.message" class="form-control"></textarea>
+        <small class="text-danger" [class.d-none]="message.valid || message.untouched"> Please type your message here</small>
+    </div>
+
+    <button class="btn-primary form-control" [disabled]="userForm.form.invalid"> Submit</button>
+</form>
